@@ -1,83 +1,45 @@
-Feature: Add item(s) to cart
-  As a user I want to be able to add products
+Feature: Add to cart
+  as a user i want to be able to add products
   to the cart, so that I can buy them.
 
-  Background:
+  Background: That I am on the home page
     Given that I am on the start page
 
   Scenario Outline: Adding "<quantity>" "<product>" to the cart
-    Given that I have searched for "<product>"
-    When I click the buy button "<quantity>" time
+    When That I have searched for "<product>"
+    And I click the buy button "<quantity>" time
     Then "<quantity>" "<product>" should be added to the cart
 
     Examples:
       | product    | quantity |
       | Bordslampa | 1        |
       | Bordslampa | 2        |
+      | Bordslampa | 3        |
       | Golvlampa  | 1        |
-      | Golvlampa  | 3        |
-
-  Scenario:
-
-Feature: Search for items in the shop
-  As a user I want to be able to find products i can buy
-
-  Background:
-    Given that I am on the start page
-
-  Scenario: Find "Taklampa" in the shop
-    Given that i am in the search bar field
-    When input "Taklampa" in the search bar
-    Then I should see "Taklampa" in the result list
-
-  Scenario: Find "Bordslampa" in the shop
-    Given that i am in the search bar field
-    When input "Bordslampa" in the search bar
-    Then I should see "Bordslampa" in the result list
-
-  Scenario: Find "Golvlampa" in the shop
-    Given that i am in the search bar field
-    When input "Golvlampa" in the search bar
-    Then I should see "Golvlampa" in the result list
-
-  Scenario: Find "Lampett" in the shop
-    Given that i am in the search bar field
-    When input "Lampett" in the search bar
-    Then I should see "Lampett" in the result list
-
-  Scenario: Find "Spotlight" in the shop
-    Given that i am in the search bar field
-    When input "Spotlight" in the search bar
-    Then I should see "Spotlight" in the result list
+      | Golvlampa  | 2        |
 
 
-Feature: Pay for items
-  As a user I want to pay for the items in the cart
+  Scenario: Check total value for "1" "Golvlampa"
+    When I search for "Golvlampa"
+    And click buy "1" times
+    Then the price total should be correct
 
-  Background:
-    Given that I am on the start page
+  Scenario: Check total value for "5" "Golvlampor"
+    When I search for "Golvlampa"
+    And click buy "5" times
+    Then the price total should be correct
 
-  Scenario:
-    Given that i have "1" "Taklampa" in the cart
-    When i click buy and fill out the required information
-    Then i should get a buy confirmation
+  Scenario: Check total value for "4" "Spotlights"
+    When I search for "Spotlight"
+    And click buy "4" times
+    Then the price total should be correct
 
-  Scenario:
-    Given that i have "2" "Bordslampa" in the cart
-    When i click buy and fill out the required information
-    Then i should get a buy confirmation
+  Scenario: Check total value for "3" "Taklampor"
+    When I search for "Taklampa"
+    And click buy "3" times
+    Then the price total should be correct
 
-  Scenario:
-    Given that i have "1" "Golvlampa" in the cart
-    When i click buy and fill out the required information
-    Then i should get a buy confirmation
-
-  Scenario:
-    Given that i have "2" "Lampett" in the cart
-    When i click buy and fill out the required information
-    Then i should get a buy confirmation
-
-  Scenario:
-    Given that i have "1" "Spotlight" in the cart
-    When i click buy and fill out the required information
-    Then i should get a buy confirmation
+  Scenario: Check total value for "2" "Bordslampor"
+    When I search for "Bordslampa"
+    And click buy "2" times
+    Then the price total should be correct
