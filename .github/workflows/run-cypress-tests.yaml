@@ -1,4 +1,4 @@
-name: test and deploy
+name: lumia cypress workflow
 # this does not work with a protective branch
 on:
   pull_request:
