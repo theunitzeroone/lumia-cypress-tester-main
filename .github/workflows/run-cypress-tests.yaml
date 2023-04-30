@@ -1,7 +1,7 @@
 name: lumia cypress workflow
 # this does not work with a protective branch
 on:
-  pull_request:
+  pull_request, push:
     branches: [master]
 
 jobs:
